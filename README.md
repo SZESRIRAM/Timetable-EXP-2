@@ -171,6 +171,8 @@ home.html
 
 
 ## OUTPUT
+<img width="1918" height="1007" alt="image" src="https://github.com/user-attachments/assets/b46e83a9-ffc1-4ad7-9f95-16e008a60a09" />
+
 
 
 ## RESULT
