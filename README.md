@@ -28,7 +28,7 @@ Execute the program using runserver command.
 
 ## PROGRAM
 home.html
-'''
+```
     {% load static %}
     <!doctype html>  
   <html>
@@ -206,7 +206,7 @@ home.html
 
     </body>
     </html>
-  '''
+  ```
 
 
 ## OUTPUT
