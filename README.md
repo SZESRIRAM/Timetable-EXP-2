@@ -28,150 +28,190 @@ Execute the program using runserver command.
 
 ## PROGRAM
 home.html
-  <!DOCTYPE html>
-{% load static %}
-<html>
-<head>
-  <title>Time Table</title>
+'''
+    {% load static %}
+    <!doctype html>  
+  <html>
+    <head>
+  <meta charset="utf-8" />
+  <title>Timetable</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
-    body {
-      font-family: "Roboto", sans-serif;
-      background-color: #f9f9f9;
-      text-align: center;
+    html,body {
       margin: 20px;
+      font-family: "Times New Roman", Times, serif;
+      background: #ffffff;
     }
 
-    h2 {
-      color: #101011ff;
-    }
-    table {
-      border-collapse: collapse;
-      margin: 25px auto;
-      width: 85%;
-      background: white;
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
+    .header-img {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 0 auto 20px;
     }
 
-    th, td {
-      border: 1px solid #555;
-      padding: 10px;
+    .page-header {
       text-align: center;
-    }
-
-    th {
-      background-color: #8bd6fcff;
-      color: black;
-    }
-
-    td {
+      margin-bottom: 10px;
       font-weight: bold;
+      font-size: 20px;
     }
 
-    tr:nth-child(even) {
-      background-color: #f7faf0ff;
+    .timetable-card {
+      width: 780px;
+      max-width: 96%;
+      margin: 8px auto 26px;
+      background: #ffb3ff;
+      padding: 18px;
+      border: 6px solid rgba(0,0,0,0.6);
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.6);
     }
 
-    .sub-table {
-      width: 60%;
-      margin-top: 30px;
+    .grid {
+      display: grid;
+      grid-template-columns: 110px repeat(6, 1fr);
+      gap: 12px;
     }
 
-    .sub-table th {
-      background-color: #0c0c0cff;
-      color: white;
+    .cell {
+      min-height: 36px;
+      padding: 6px 8px;
+      border: 2px inset rgba(0,0,0,0.12);
     }
 
-    footer {
-      margin-top: 20px;
-      font-style: italic;
-      color: #444;
+    .col-left {
+      background: #ffeb3b;
+      font-weight: bold;
+      text-align: center;
+      border: 3px solid #b38600;
     }
+
+    .day-header {
+      background: #ffeb3b;
+      border: 3px solid #b38600;
+      text-align: center;
+      font-weight: bold;
+      padding: 6px;
+    }
+
+    .slot {
+      height: 34px;
+      line-height: 34px;
+      border: 2px inset rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.25);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .lunch {
+      grid-column: 2 / span 6;
+      text-align: center;
+      font-weight: bold;
+      border: 16px inset rgba(0,0,0,0.12);
+    }
+
+    .subject-table-container {
+      width: 780px;
+      max-width: 96%;
+      margin: 20px auto;
+    }
+
+    table.subjects {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.subjects th,
+    table.subjects td {
+      border: 3px solid #222;
+      padding: 8px 10px;
+    }
+
+    table.subjects th {
+      background: #eee;
+      font-weight: 700;
+    }
+
     </style>
     </head>
     <body>
-    <img src={% static 'logo.png' %}>
 
-    <h2>TIME TABLE BY PONSRIRAM (25011113)</h2>
+    <img class="header-img" src="{% static 'logo.png' %}" alt="College Logo">
 
-    <table>
-    <tr>
-      <th>Day/Time</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
-    </tr>
-    <tr>
-      <td>8-10</td>
-      <td>PYTHON</td>
-      <td>ENG</td>
-      <td>WEB</td>
-      <td>FREE</td>
-      <td>ENG</td>
-      <td>ENG</td>
-    </tr>
-    <tr>
-      <td>10-12</td>
-      <td>PYTHON</td>
-      <td>WEB</td>
-      <td>FREE</td>
-      <td>FREE</td>
-      <td>Python</td>
-      <td>ENG</td>
-    </tr>
-    <tr>
-      <td>12-1</td>
-      <td colspan="6" style="background:#00000;">L U N C H</td>
-    </tr>
-    <tr>
-      <td>1-3</td>
-      <td>FREE</td>
-      <td>Python</td>
-      <td>MENTOR</td>
-      <td>FREE</td>
-      <td>Python</td>
-      <td>FREE</td>
-    </tr>
-    <tr>
-      <td>3-5</td>
-      <td>WEB</td>
-      <td>WEB</td>
-      <td>WEB</td>
-      <td>FREE</td>
-      <td>FREE</td>
-      <td>FREE</td>
-    </tr>
+    <div class="page-header">
+    TIMETABLE - PONSRIRAM P (25011113)
+    </div>
+
+    <div class="timetable-card">
+    <div class="grid">
+
+      <div class="col-left">Day/Time</div>
+      <div class="day-header">Monday</div>
+      <div class="day-header">Tuesday</div>
+      <div class="day-header">Wednesday</div>
+      <div class="day-header">Thursday</div>
+      <div class="day-header">Friday</div>
+      <div class="day-header">Saturday</div>
+
+      <div class="col-left">8-10</div>
+      <div class="cell"><div class="slot">Python</div></div>
+      <div class="cell"><div class="slot">English</div></div>
+      <div class="cell"><div class="slot">Web</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+      <div class="cell"><div class="slot">English</div></div>
+      <div class="cell"><div class="slot">English</div></div>
+
+      <div class="col-left">10-12</div>
+      <div class="cell"><div class="slot">Python</div></div>
+      <div class="cell"><div class="slot">Web</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+      <div class="cell"><div class="slot">Python</div></div>
+      <div class="cell"><div class="slot">English</div></div>
+
+      <div class="col-left">12-01</div>
+      <div class="lunch">LunchBreak</div>
+
+      <div class="col-left">01-03</div>
+      <div class="cell"><div class="slot">Free</div></div>
+      <div class="cell"><div class="slot">Python</div></div>
+      <div class="cell"><div class="slot">MentorMeet</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+      <div class="cell"><div class="slot">Python</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+
+      <div class="col-left">03-05</div>
+      <div class="cell"><div class="slot">Web</div></div>
+      <div class="cell"><div class="slot">Web</div></div>
+      <div class="cell"><div class="slot">Web</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+      <div class="cell"><div class="slot">Free</div></div>
+
+    </div>
+    </div>
+
+    <div class="subject-table-container">
+    <table class="subjects">
+      <tr>
+        <th>S.No</th>
+        <th>SubjectCode</th>
+        <th>Subject name</th>
+      </tr>
+      <tr><td>1</td><td>19AI414</td><td>Fundamentals of Web Application Development</td></tr>
+      <tr><td>2</td><td>19EN101</td><td>Communicative English</td></tr>
+      <tr><td>3</td><td>19AI301</td><td>Python Programming</td></tr>
     </table>
-
-    <table class="sub-table">
-    <tr>
-      <th>Subject Code</th>
-      <th>Subject Name</th>
-    </tr>
-    <tr>
-      <td>19AI414</td>
-      <td>Fundamentals of Web Application Development (FWAD)</td>
-    </tr>
-    <tr>
-      <td>19EN101</td>
-      <td>Communicative english</td>
-    </tr>
-    <tr>
-      <td>19AI301</td>
-      <td>Python Programming</td>
-    </tr>
-    </table>
+    </div>
 
     </body>
     </html>
-
+  '''
 
 
 ## OUTPUT
-<img width="1918" height="1007" alt="image" src="https://github.com/user-attachments/assets/b46e83a9-ffc1-4ad7-9f95-16e008a60a09" />
+<img width="1891" height="980" alt="image" src="https://github.com/user-attachments/assets/05f254eb-4303-49b7-bc82-14126bfcdc19" />
+
 
 
 
